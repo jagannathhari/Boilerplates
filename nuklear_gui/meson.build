@@ -1,4 +1,4 @@
-project('zeropass', 'c', version: '1.0')
+project('nuklear_gui', 'c', version: '1.0')
 
 c_flags = ['-std=c11', '-Wall', '-Wextra', '-pedantic']
 
