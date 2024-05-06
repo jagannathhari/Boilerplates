@@ -29,9 +29,11 @@
 #define WINDOW_WIDTH 500
 #define WINDOW_HEIGHT 370
 #define TITLE "Nuklear GUI"
+
 int main(int argc, char *argv[]) {
 
     /* Platform */
+    WinData windata;
     SDL_Window *win;
     SDL_Renderer *renderer;
     int running = 1;
@@ -112,6 +114,13 @@ int main(int argc, char *argv[]) {
         /*nk_style_load_all_cursors(ctx, atlas->cursors);*/
         nk_style_set_font(ctx, &font->handle);
     }
+    
+    //populating windata
+    windata.ctx = ctx;
+    windata.renderer = renderer;
+    windata.w = WINDOW_WIDTH;
+    windata.h = WINDOW_WIDTH;
+
 
     while (running) {
         /* Input */
@@ -125,7 +134,7 @@ int main(int argc, char *argv[]) {
         nk_input_end(ctx);
 
         /* GUI */
-        main_ui(ctx, WINDOW_WIDTH, WINDOW_HEIGHT);
+        main_ui(&windata);
         SDL_RenderClear(renderer);
 
         nk_sdl_render(NK_ANTI_ALIASING_ON);
