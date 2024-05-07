@@ -39,13 +39,13 @@ static SDL_Texture *image_load_file(const char *filename, SDL_Renderer *renderer
 
 
 
-static SDL_Texture *image_load_memory(unsigned char const *buffer, SDL_Renderer *renderer) {
+static SDL_Texture *image_load_memory(unsigned char const *buffer,int image_data_size, SDL_Renderer *renderer) {
     int x, y, n;
 
     // Load image using stb_image
-    stbi_uc* image = stbi_load_from_memory(buffer,&x,&y,&n,0);
+    stbi_uc* image = stbi_load_from_memory(buffer,image_data_size,&x,&y,&n,0);
     if (!image) {
-        fprintf(stderr, "Failed to load image: %s\n", filename);
+        fprintf(stderr, "Failed to load image");
         exit(EXIT_FAILURE);
     }
 
