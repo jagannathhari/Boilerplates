@@ -1,7 +1,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
-static SDL_Texture *image_load(const char *filename, SDL_Renderer *renderer) {
+static SDL_Texture *image_load_file(const char *filename, SDL_Renderer *renderer) {
     int x, y, n;
 
     // Load image using stb_image
