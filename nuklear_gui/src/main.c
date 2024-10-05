@@ -120,21 +120,15 @@ int main(int argc, char *argv[]) {
     windata.renderer = renderer;
     windata.w = WINDOW_WIDTH;
     windata.h = WINDOW_WIDTH;
-
+    windata.should_close = 0; 
+    windata.handle_event = nk_sdl_handle_event;
 
     while (running) {
-        /* Input */
-        SDL_Event evt;
-        nk_input_begin(ctx);
-        while (SDL_PollEvent(&evt)) {
-            if (evt.type == SDL_QUIT)
-                goto cleanup;
-            nk_sdl_handle_event(&evt);
-        }
-        nk_input_end(ctx);
-
+        
         /* GUI */
         main_ui(&windata);
+        if(windata.should_close) goto cleanup;
+
         SDL_RenderClear(renderer);
 
         nk_sdl_render(NK_ANTI_ALIASING_ON);

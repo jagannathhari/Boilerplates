@@ -7,6 +7,8 @@
 typedef struct {
     struct nk_context *ctx;
     SDL_Renderer *renderer;
+    int (*handle_event)(SDL_Event *evt);
+    int should_close;
     int w;
     int h;
 }WinData;
